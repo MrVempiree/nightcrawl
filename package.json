@@ -1,0 +1,11 @@
+{
+  "description": "Recon checklist planner for authorized security testing",
+  "license": "MIT",
+  "name": "nightcrawl",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  },
+  "type": "module",
+  "version": "1.0.0"
+}

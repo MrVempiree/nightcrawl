@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nightcrawl — recon checklist planner</title>
+  <meta name="description" content="Plan a phased recon and web-assessment checklist for authorized security testing. Track progress, take notes, export to Markdown." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <span class="moon"></span>
+    <svg class="bat bat-a" viewBox="0 0 100 40" aria-hidden="true"><path d="M50 18 C42 6 28 2 14 8 C20 12 20 16 16 22 C24 20 30 24 34 30 C38 24 44 22 50 26 C56 22 62 24 66 30 C70 24 76 20 84 22 C80 16 80 12 86 8 C72 2 58 6 50 18 Z"/></svg>
+    <svg class="bat bat-b" viewBox="0 0 100 40" aria-hidden="true"><path d="M50 18 C42 6 28 2 14 8 C20 12 20 16 16 22 C24 20 30 24 34 30 C38 24 44 22 50 26 C56 22 62 24 66 30 C70 24 76 20 84 22 C80 16 80 12 86 8 C72 2 58 6 50 18 Z"/></svg>
+    <svg class="bat bat-c" viewBox="0 0 100 40" aria-hidden="true"><path d="M50 18 C42 6 28 2 14 8 C20 12 20 16 16 22 C24 20 30 24 34 30 C38 24 44 22 50 26 C56 22 62 24 66 30 C70 24 76 20 84 22 C80 16 80 12 86 8 C72 2 58 6 50 18 Z"/></svg>
+  </div>
+
+  <header class="hero">
+    <p class="eyebrow">VEMPIRE &middot; AUTHORIZED TESTING ONLY</p>
+    <h1>night<span>crawl</span></h1>
+    <p class="tagline">Plan the hunt before you fly. A phased recon checklist for security testing you are authorized to perform.</p>
+  </header>
+
+  <main>
+    <section class="glass notice" role="note">
+      <h2>Before you crawl</h2>
+      <p>
+        nightcrawl is a planning tool for <strong>authorized security testing only</strong>. Only test systems you own
+        or have explicit written permission to test. The first phase of every checklist is confirming that
+        authorization and scope — do not skip it.
+      </p>
+    </section>
+
+    <section class="glass panel">
+      <h2>Build your checklist</h2>
+      <form id="generate-form">
+        <label class="field">
+          <span>Target domain</span>
+          <input id="domain" type="text" placeholder="example.com" autocomplete="off" spellcheck="false" />
+        </label>
+        <p id="domain-error" class="error" hidden></p>
+
+        <fieldset class="profiles">
+          <legend>Profile</legend>
+          <label class="profile-card">
+            <input type="radio" name="profile" value="quick" />
+            <strong>Quick recon</strong>
+            <span>Fast, low-noise first pass.</span>
+          </label>
+          <label class="profile-card">
+            <input type="radio" name="profile" value="full" checked />
+            <strong>Full web assessment</strong>
+            <span>Every phase, end to end.</span>
+          </label>
+          <label class="profile-card">
+            <input type="radio" name="profile" value="api" />
+            <strong>API focus</strong>
+            <span>Endpoints, tokens, object-level authz.</span>
+          </label>
+        </fieldset>
+
+        <button class="primary" type="submit">Generate checklist</button>
+      </form>
+      <p id="status" class="status" hidden></p>
+    </section>
+
+    <section id="plan-panel" class="panel" hidden>
+      <div class="glass plan-head">
+        <div>
+          <h2 id="plan-title">Checklist</h2>
+          <p id="overall-label" class="muted">0 of 0 done — 0%</p>
+        </div>
+        <div class="actions">
+          <button id="download" type="button">Download Markdown</button>
+          <button id="copy" type="button">Copy Markdown</button>
+          <button id="print" type="button">Print</button>
+          <button id="reset" type="button" class="danger">Reset progress</button>
+        </div>
+        <div class="track big"><div id="overall-bar" class="fill"></div></div>
+      </div>
+
+      <div id="phases"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>nightcrawl by Lavish Gangwar (Vempire) &middot; Progress is stored locally in your browser, per domain + profile. Nothing leaves your machine.</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
